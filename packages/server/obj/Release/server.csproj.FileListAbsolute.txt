@@ -1,0 +1,14 @@
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\server.exe.config
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\server.exe
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\server.pdb
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\ClassLibrary.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\Nito.AsyncEx.Concurrent.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\Nito.AsyncEx.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\Nito.AsyncEx.Enlightenment.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\ClassLibrary.pdb
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\Nito.AsyncEx.xml
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\Nito.AsyncEx.Concurrent.xml
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Release\Nito.AsyncEx.Enlightenment.xml
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\obj\Release\server.csprojResolveAssemblyReference.cache
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\obj\Release\server.exe
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\obj\Release\server.pdb

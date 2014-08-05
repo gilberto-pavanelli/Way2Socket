@@ -1,0 +1,10 @@
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketSample\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketSample\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketSample\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketSample\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketSample\ClassLibrary\obj\Debug\ClassLibrary.pdb
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\ClassLibrary\obj\Debug\ClassLibrary.pdb
