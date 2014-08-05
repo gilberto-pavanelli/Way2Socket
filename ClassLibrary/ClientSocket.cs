@@ -30,16 +30,19 @@ namespace ClassLibrary
 
                 connectDone.Reset();
                 var asyncResult = _socket.BeginConnect(new IPEndPoint(IPAddress.Parse(ipAddress), port), new AsyncCallback(ConnectCallback), null);
+                
+                var appSettings = ConfigurationManager.AppSettings;
+
+               
+
+                asyncResult.AsyncWaitHandle.WaitOne(Convert.ToInt16(appSettings["connectTimeOut"]), true);
+
+                if (!_socket.Connected)
+                {
+                    _socket.Close();
+                    Console.WriteLine("connect timeout...");
+                }
                 connectDone.WaitOne();
-                //var appSettings = ConfigurationManager.AppSettings;
-
-                //asyncResult.AsyncWaitHandle.WaitOne(Convert.ToInt16(appSettings["connectTimeOut"]), true);
-
-                //if (!_socket.Connected)
-                //{
-                //    _socket.Close();
-                //    Console.WriteLine("can't connect to server...");
-                //}
             }
             catch (Exception ex)
             {
