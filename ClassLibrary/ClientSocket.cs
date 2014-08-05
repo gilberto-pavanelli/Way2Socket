@@ -33,14 +33,16 @@ namespace ClassLibrary
                 
                 var appSettings = ConfigurationManager.AppSettings;
 
-               
+               Console.WriteLine(DateTime.Now);
 
                 asyncResult.AsyncWaitHandle.WaitOne(Convert.ToInt16(appSettings["connectTimeOut"]), true);
 
                 if (!_socket.Connected)
                 {
                     _socket.Close();
-                    Console.WriteLine("connect timeout...");
+                    Console.WriteLine("timeout - " + DateTime.Now);
+                    throw new SocketException(10060); 
+                    //Console.WriteLine("connect timeout...");
                 }
                 connectDone.WaitOne();
             }

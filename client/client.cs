@@ -66,12 +66,11 @@ namespace client
 
                                     ClientSocket clientSocketTemp = new ClientSocket();
 
-                                     _clientSocketDictionary.Add(job.Ip, clientSocketTemp);
+                                    _clientSocketDictionary.Add(job.Ip, clientSocketTemp);
 
-                                     tasksList.Add(Task.Run(async () => { await StartClientAsync(job, clientSocketTemp); }));
+                                    tasksList.Add(Task.Run(async () => { await StartClientAsync(job, clientSocketTemp); }));
 
                                     
-
                                 }
                                 await Task.WhenAll(tasksList.ToArray());
                                 Console.Write("Hit any key to finish.");
@@ -167,10 +166,6 @@ namespace client
                     }
                     await WriteTextFileAsync(String.Format(exeFolder + "\\data\\{0}.txt", jobFile.Ip.Replace('.', '_') + "_" + DateTime.Now.Hour +
                         DateTime.Now.Minute + DateTime.Now.Second), fileStringBuilder);
-                }
-                else
-                {
-                    Console.WriteLine("can't connect!!!");
                 }
             }
             catch (Exception ex)
@@ -336,16 +331,16 @@ namespace client
         }
         static void OnProcessExit(object sender, EventArgs e)
         {
-            //foreach (var value in _clientSocketDictionary.Values)
-            //{
-            //    if (value != null && _clientSocket._socket.Connected)
-            //    {
-            //        _clientSocket._socket.Shutdown(SocketShutdown.Both);
-            //        _clientSocket._socket.Close();
-            //    }    
-            //}
+            foreach (var value in _clientSocketDictionary.Values)
+            {
+                if ((ClientSocket)value != null && ((ClientSocket)value)._socket.Connected)
+                {
+                    ((ClientSocket)value)._socket.Shutdown(SocketShutdown.Both);
+                    ((ClientSocket)value)._socket.Close();
+                }
+            }
 
-            
+
         }
 
     }

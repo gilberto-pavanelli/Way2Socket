@@ -73,5 +73,8 @@ namespace ClassLibrary
         public int Port { get; set; }
         public ushort StartIndex { get; set; }
         public ushort FinalIndex { get; set; }
+        public Boolean Success { get; set; }
+        public int Attempts { get; set; }
+        public int LastAttemptDateTime { get; set; }
     }
 }
