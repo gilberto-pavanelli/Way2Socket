@@ -26,3 +26,6 @@ C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\
 C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Debug\Nito.AsyncEx.Concurrent.xml
 C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 C:\Users\gilberto.pavanelli\Documents\Visual Studio 11\Projects\AsyncSocketWay2\server\obj\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\gilberto.pavanelli\Documents\GitHub\Way2Socket\server\bin\Debug\server.exe.config
+C:\Users\gilberto.pavanelli\Documents\GitHub\Way2Socket\server\obj\Debug\server.exe
+C:\Users\gilberto.pavanelli\Documents\GitHub\Way2Socket\server\obj\Debug\server.pdb
