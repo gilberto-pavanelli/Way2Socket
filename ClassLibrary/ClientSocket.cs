@@ -30,19 +30,15 @@ namespace ClassLibrary
 
                 connectDone.Reset();
                 var asyncResult = _socket.BeginConnect(new IPEndPoint(IPAddress.Parse(ipAddress), port), new AsyncCallback(ConnectCallback), null);
-                
-                var appSettings = ConfigurationManager.AppSettings;
 
-               Console.WriteLine(DateTime.Now);
+                var appSettings = ConfigurationManager.AppSettings;
 
                 asyncResult.AsyncWaitHandle.WaitOne(Convert.ToInt16(appSettings["connectTimeOut"]), true);
 
                 if (!_socket.Connected)
                 {
                     _socket.Close();
-                    Console.WriteLine("timeout - " + DateTime.Now);
-                    throw new SocketException(10060); 
-                    //Console.WriteLine("connect timeout...");
+                    throw new SocketException(10060);
                 }
                 connectDone.WaitOne();
             }
@@ -57,14 +53,16 @@ namespace ClassLibrary
             try
             {
                 _socket.EndConnect(ar);
-                Console.WriteLine("Socket connected to {0}", _socket.RemoteEndPoint.ToString());
+#if DEBUG
+                       Console.WriteLine("Socket connected to {0}", _socket.RemoteEndPoint.ToString());
+#endif
                 connectDone.Set();
             }
             catch (Exception e)
             {
-               // Console.WriteLine(e.ToString());
+                // Console.WriteLine(e.ToString());
             }
-           
+
         }
         protected override void ReceiveCallback(IAsyncResult ar)
         {

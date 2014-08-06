@@ -73,8 +73,12 @@ namespace ClassLibrary
         public int Port { get; set; }
         public ushort StartIndex { get; set; }
         public ushort FinalIndex { get; set; }
+        public ushort ReceivedStartIndex { get; set; }
+        public ushort ReceivedFinalIndex { get; set; }
         public Boolean Success { get; set; }
         public int Attempts { get; set; }
         public int LastAttemptDateTime { get; set; }
+        public string Status { get; set; }
+        public string FileName { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace client
         {
             try
             {
-                if (args.Length == 1)
+                if (args.Length >= 1)
                 {
                     String fileName = "";
                     if (args[0].Contains("\\"))
@@ -68,13 +68,14 @@ namespace client
 
                                     _clientSocketDictionary.Add(job.Ip, clientSocketTemp);
 
-                                    tasksList.Add(Task.Run(async () => { await StartClientAsync(job, clientSocketTemp); }));
+                                    tasksList.Add(Task.Run(async () =>
+                                                                 {
+                                                                     await StartClientAsync(job, clientSocketTemp);
+                                                                 }));
 
-                                    
+
                                 }
-                                await Task.WhenAll(tasksList.ToArray());
-                                Console.Write("Hit any key to finish.");
-                                Console.ReadKey();
+                                await PrintResults(tasksList);
                             }
                         }
                         else
@@ -96,6 +97,19 @@ namespace client
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+            }
+        }
+
+        private static async Task PrintResults(List<Task> tasksList)
+        {
+            string formatter = "{0,-14}{1,5}{2,5} {3,5} {4,5} {5,5} {6,-14}{7, -20}";
+            await Task.WhenAll(tasksList.ToArray());
+            Console.WriteLine("\n\nIP             Port Requested   Received   Status        Filename\n");
+            foreach (Job job in listJobs)
+            {
+                Console.WriteLine(formatter, job.Ip, job.Port, job.StartIndex, job.FinalIndex, job.ReceivedStartIndex, job.ReceivedFinalIndex,
+                    job.Status, Path.GetFileName(job.FileName));
+                Console.WriteLine("\n");
             }
         }
 
@@ -138,10 +152,6 @@ namespace client
                         SetCurrentIndex(i, clientSocket);
                         if (clientSocket.CurrentIndex == i)
                         {
-
-#if !DEBUG
-                            Console.Write(".");
-#endif
                             MeasureData measureData = new MeasureData();
                             measureData.Index = i;
                             clientSocket._measureDataList.Add(measureData);
@@ -152,20 +162,17 @@ namespace client
 
                     clientSocket._socket.Shutdown(SocketShutdown.Both);
                     clientSocket._socket.Close();
+
+                    jobFile.ReceivedStartIndex = currentJob.StartIndex;
+                    jobFile.ReceivedFinalIndex = currentJob.FinalIndex;
+
                     StringBuilder fileStringBuilder = new StringBuilder();
-                    fileStringBuilder.AppendLine(clientSocket.SerialNumber);
-                    foreach (MeasureData measureData in clientSocket._measureDataList)
-                    {
-                        fileStringBuilder.AppendLine(String.Format("{0};{1:yyyy-MM-dd hh:mm:ss};{2:N2};",
-                              measureData.Index, measureData.DateTime, measureData.Value));
-                    }
-                    string exeFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    if (!Directory.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\data"))
-                    {
-                        Directory.CreateDirectory(exeFolder + "\\data");
-                    }
-                    await WriteTextFileAsync(String.Format(exeFolder + "\\data\\{0}.txt", jobFile.Ip.Replace('.', '_') + "_" + DateTime.Now.Hour +
-                        DateTime.Now.Minute + DateTime.Now.Second), fileStringBuilder);
+                    await WriteFileAsync(jobFile, clientSocket, fileStringBuilder);
+                    jobFile.Status = "OK";
+                }
+                else
+                {
+                    jobFile.Status = "can't connect";
                 }
             }
             catch (Exception ex)
@@ -174,6 +181,24 @@ namespace client
             }
 
 
+        }
+
+        private static async Task WriteFileAsync(Job jobFile, ClientSocket clientSocket, StringBuilder fileStringBuilder)
+        {
+            fileStringBuilder.AppendLine(clientSocket.SerialNumber);
+            foreach (MeasureData measureData in clientSocket._measureDataList)
+            {
+                fileStringBuilder.AppendLine(String.Format("{0};{1:yyyy-MM-dd hh:mm:ss};{2:N2};",
+                    measureData.Index, measureData.DateTime, measureData.Value));
+            }
+            string exeFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            if (!Directory.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\data"))
+            {
+                Directory.CreateDirectory(exeFolder + "\\data");
+            }
+            jobFile.FileName = String.Format(exeFolder + "\\data\\{0}.txt",
+                jobFile.Ip.Replace('.', '_') + "_" + DateTime.Now.Hour + DateTime.Now.Minute);
+            await WriteTextFileAsync(jobFile.FileName, fileStringBuilder);
         }
 
         private static async Task WriteTextFileAsync(string filePath, StringBuilder sb)
